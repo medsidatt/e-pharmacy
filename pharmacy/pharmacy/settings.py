@@ -36,8 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'webapp.products',
+    'webapp.medicaments',
     'webapp.home',
+    'django_select2',
 ]
 
 
@@ -51,6 +52,21 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CACHES = {
+    "default": {  # Required by Django
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "default_cache"
+    },
+    "select2": {  # Cache for Select2
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "select2_cache"
+    }
+}
+
+# Tell Select2 which cache to use
+SELECT2_CACHE_BACKEND = "select2"
+
 
 ROOT_URLCONF = 'pharmacy.urls'
 
